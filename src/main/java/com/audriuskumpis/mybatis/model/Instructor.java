@@ -1,4 +1,4 @@
-package com.audriuskumpis.persistence.mybatis.model;
+package com.audriuskumpis.mybatis.model;
 
 public class Instructor {
     /**

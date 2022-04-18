@@ -1,7 +1,7 @@
 package com.audriuskumpis.usecases;
 
 import com.audriuskumpis.mybatis.dao.InstructorMapper;
-import com.audriuskumpis.persistence.mybatis.model.Instructor;
+import com.audriuskumpis.mybatis.model.Instructor;
 import lombok.Getter;
 
 import javax.annotation.PostConstruct;

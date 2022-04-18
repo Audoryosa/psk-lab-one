@@ -1,6 +1,6 @@
 package com.audriuskumpis.mybatis.dao;
 
-import com.audriuskumpis.persistence.mybatis.model.Course;
+import com.audriuskumpis.mybatis.model.Course;
 import org.mybatis.cdi.Mapper;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.audriuskumpis.usecases;
 
 import com.audriuskumpis.mybatis.dao.CourseMapper;
-import com.audriuskumpis.persistence.mybatis.model.Course;
+import com.audriuskumpis.mybatis.model.Course;
 import lombok.Getter;
 import lombok.Setter;
 
