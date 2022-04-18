@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Courses:</h2>
+    <ol>
+        <ui:repeat value="#{courses.allCourses}" var="course">
+            <li><h:link value="#{course.title}" outcome="/students?courseId=#{course.id}"/></li>
+            <span>Instructors:</span>
+            <ul>
+                <ui:repeat value="#{course.instructors}" var="instructor">
+                    <li>#{instructor.name}</li>
+                </ui:repeat>
+            </ul>
+        </ui:repeat>
+    </ol>
+<br/>
+<br/>
+    <h:form>
+        <label>Course title:</label>
+        <h:inputText value="#{courses.courseToCreate.title}" required="true" />
+        <h:commandButton value="Add new course" action="#{courses.createCourse}" />
+    </h:form>
+
+    <h2>Instructors:</h2>
+    <ol>
+        <ui:repeat value="#{instructors.allInstructors}" var="instructor">
+            <li>#{instructor.name}</li>
+            <span>Courses:</span>
+            <ul>
+                <ui:repeat value="#{instructor.courses}" var="course">
+                    <li>#{course.title}</li>
+                </ui:repeat>
+            </ul>
+        </ui:repeat>
+    </ol>
+
+    <h:link outcome="myBatis/courses" value="MyBatis implementation"/>
+
+</h:body>
+</html>
