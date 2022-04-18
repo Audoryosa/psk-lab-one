@@ -20,7 +20,7 @@ import static lombok.AccessLevel.PRIVATE;
 @Table(name = "INSTRUCTOR")
 @NamedQueries({
         @NamedQuery(name = "Instructor.findAll", query = "select a from Instructor as a"),
-        @NamedQuery(name = "Instructor.findByName", query = "select a from Instructor as a where lower(a.name) = :name")
+        @NamedQuery(name = "Instructor.findByName", query = "select a from Instructor as a where lower(a.name) = lower(:name)")
 })
 public class Instructor {
 

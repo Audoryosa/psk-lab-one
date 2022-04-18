@@ -28,7 +28,7 @@ public class InstructorsDAO {
     public Instructor findByName(String name) {
         try {
             Query query = entityManager.createNamedQuery("Instructor.findByName");
-            query.setParameter("name", name.toLowerCase());
+            query.setParameter("name", name);
             return (Instructor) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
