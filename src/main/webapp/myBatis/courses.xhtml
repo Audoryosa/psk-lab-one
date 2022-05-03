@@ -10,6 +10,15 @@
     <ol>
         <ui:repeat value="#{coursesMyBatis.allCourses}" var="course">
             <li><h:link value="#{course.title}" outcome="students?courseId=#{course.id}" /></li>
+
+            <span>Instructors: </span>
+            <ul>
+                <ui:repeat value="#{course.instructors}" var="instructor">
+                    <li>#{instructor.name}</li>
+                </ui:repeat>
+            </ul>
+            <hr/>
+
         </ui:repeat>
     </ol>
     <h:form>
@@ -18,5 +27,7 @@
         <h:commandButton value="Add new course" action="#{coursesMyBatis.createCourse}" />
     </h:form>
     <h:link value="Back to jpa impl" outcome="/index"/>
+
+    <hr/>
 </h:body>
 </html>

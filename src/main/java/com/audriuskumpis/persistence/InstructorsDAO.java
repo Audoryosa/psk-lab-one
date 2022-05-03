@@ -35,7 +35,6 @@ public class InstructorsDAO {
         }
     }
 
-
     public void update(Instructor instructor) {
         entityManager.merge(instructor);
     }

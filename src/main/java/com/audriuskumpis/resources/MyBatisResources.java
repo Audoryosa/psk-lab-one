@@ -1,6 +1,7 @@
 package com.audriuskumpis.resources;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.mybatis.cdi.SessionFactoryProvider;

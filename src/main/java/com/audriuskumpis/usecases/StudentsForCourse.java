@@ -65,9 +65,8 @@ public class StudentsForCourse implements Serializable {
     }
 
     private void handleExistingInstructor(Instructor foundInstructor) {
-        List<Course> allInstructorCourses;
         instructorToAdd.setId(foundInstructor.getId());
-        allInstructorCourses = foundInstructor.getCourses();
+        List<Course> allInstructorCourses = foundInstructor.getCourses();
         allInstructorCourses.add(this.course);
         instructorToAdd.setCourses(allInstructorCourses);
         instructorsDAO.update(instructorToAdd);

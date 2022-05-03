@@ -32,7 +32,8 @@ public class Course {
     @Column(name = "TITLE")
     String title;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany
+    @JoinColumn(name = "COURSE_ID")
     List<Student> students = new ArrayList<>();
 
     @ManyToMany(mappedBy = "courses")

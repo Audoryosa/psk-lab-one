@@ -2,25 +2,20 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head/>
 <h:body>
-    <h2>Students enroled in #{studentsForCourse.course.title}:</h2>
-    <ol>
-        <ui:repeat value="#{studentsForCourse.course.students}" var="student">
-            <li>#{student.fullName}</li>
-        </ui:repeat>
-    </ol>
 
-    <label>Student name: </label>
+    <h2>Add Instructor to this course</h2>
     <h:form>
-        <h:inputText a:placeholder="name" value="#{studentsForCourse.studentToCreate.fullName}" required="true" />
-        <h:commandButton value="Add student to the course" action="#{studentsForCourse.createStudent}" >
-            <f:param name="courseId" value="#{studentsForCourse.course.id}" />
+        <label>Instructor name: </label>
+        <h:inputText a:placeholder="name" value="#{studentsForCourseMyBatis.instructorToAdd.name}" required="true" />
+        <h:commandButton value="Add instructor to the course" action="#{studentsForCourseMyBatis.addInstructorForCourse}" >
+            <f:param name="courseId" value="#{studentsForCourseMyBatis.course.id}" />
         </h:commandButton>
     </h:form>
+
     <h:link outcome="/myBatis/courses" value="Back to courses page"/>
 </h:body>
 </html>

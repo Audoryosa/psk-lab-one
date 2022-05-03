@@ -1,4 +1,4 @@
-package com.audriuskumpis.usecases;
+package com.audriuskumpis.usecases.mybatis;
 
 import com.audriuskumpis.mybatis.dao.CourseMapper;
 import com.audriuskumpis.mybatis.model.Course;
