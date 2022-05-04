@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
@@ -45,11 +46,24 @@ public class StudentsForCourse implements Serializable {
     @Setter
     private Instructor instructorToAdd = new Instructor();
 
+    @Getter
+    @Setter
+    private List<SelectItem> allInstructors;
+
     @Transactional
     public String createStudent() {
         studentToCreate.setCourse(this.course);
         studentsDAO.persist(studentToCreate);
         return "students?faces-redirect=true&courseId=" + this.course.getId();
+    }
+
+    @Transactional
+    public String createInstructorFromDropdown() {
+        List<Course> allInstructorCourses = instructorToAdd.getCourses();
+        allInstructorCourses.add(this.course);
+        instructorToAdd.setCourses(allInstructorCourses);
+        instructorsDAO.update(instructorToAdd);
+        return "index?faces-redirect=true";
     }
 
     @Transactional
@@ -85,7 +99,13 @@ public class StudentsForCourse implements Serializable {
                 .getExternalContext()
                 .getRequestParameterMap();
 
+
         int courseId = Integer.parseInt(requestParams.get("courseId"));
         this.course = coursesDAO.findOne(courseId);
+        this.allInstructors = new ArrayList<>();
+        List<Instructor> availableInstructors = instructorsDAO.findAll();
+        for (Instructor instructor : availableInstructors) {
+            this.allInstructors.add(new SelectItem(instructor, instructor.getName()));
+        }
     }
 }

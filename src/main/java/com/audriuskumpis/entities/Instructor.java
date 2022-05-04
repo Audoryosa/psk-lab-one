@@ -1,5 +1,6 @@
 package com.audriuskumpis.entities;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +23,7 @@ import static lombok.AccessLevel.PRIVATE;
         @NamedQuery(name = "Instructor.findAll", query = "select a from Instructor as a"),
         @NamedQuery(name = "Instructor.findByName", query = "select a from Instructor as a where lower(a.name) = lower(:name)")
 })
+@EqualsAndHashCode
 public class Instructor {
 
     @Id

@@ -31,6 +31,19 @@
         </h:commandButton>
     </h:form>
 
+    <h:form>
+        <h2>Add instructor from dropdown:</h2>
+        <label>Instructor name:</label>
+        <h:selectOneMenu title="Available instructors" value="#{studentsForCourse.instructorToAdd}" converter="#{instructorConverter}">
+            <f:selectItems value="#{studentsForCourse.allInstructors}" var="instructor" itemValue="#{instructor.label}" />
+        </h:selectOneMenu>
+
+        <h:commandButton value="Add instructor to the course" action="#{studentsForCourse.createInstructorFromDropdown}" >
+            <f:param name="courseId" value="#{studentsForCourse.course.id}" />
+        </h:commandButton>
+    </h:form>
+
+
     <h:link outcome="index" value="Back to courses page"/>
 
 </h:body>

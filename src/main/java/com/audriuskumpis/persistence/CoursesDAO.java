@@ -26,4 +26,8 @@ public class CoursesDAO {
     public Course findOne(int id) {
         return entityManager.find(Course.class, id);
     }
+
+    public void update(Course course) {
+        entityManager.merge(course);
+    }
 }
