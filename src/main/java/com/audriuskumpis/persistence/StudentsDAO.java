@@ -17,4 +17,12 @@ public class StudentsDAO {
     public void persist(Student student) {
         entityManager.persist(student);
     }
+
+    public Student findOne(int id) {
+        return entityManager.find(Student.class, id);
+    }
+
+    public Student update(Student student) {
+        return entityManager.merge(student);
+    }
 }

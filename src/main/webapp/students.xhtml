@@ -9,11 +9,18 @@
 <h:body>
     <h2>Students enroled in #{studentsForCourse.course.title} course:</h2>
 
-    <ol>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Student ID</th>
+        </tr>
         <ui:repeat value="#{studentsForCourse.course.students}" var="student">
-            <li>#{student.fullName}</li>
+            <tr>
+                <td><h:link value="#{student.fullName}" outcome="studentDetails?studentId=#{student.id}"/></td>
+                <td>#{student.studentId}</td>
+            </tr>
         </ui:repeat>
-    </ol>
+    </table>
     <h:form>
         <label>Student name: </label>
         <h:inputText a:placeholder="name" value="#{studentsForCourse.studentToCreate.fullName}" required="true" />

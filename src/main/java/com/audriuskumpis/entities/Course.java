@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +23,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NamedQueries({
         @NamedQuery(name = "Course.findAll", query = "select a from Course as a")
 })
-public class Course {
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

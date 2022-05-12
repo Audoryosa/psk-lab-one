@@ -7,6 +7,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
+
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -19,7 +21,7 @@ import static lombok.AccessLevel.PRIVATE;
 @NamedQueries({
         @NamedQuery(name = "Student.findAll", query = "select a from Student as a")
 })
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -31,6 +33,13 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "COURSE_ID")
     private Course course;
+
+    @Column(name = "STUDENT_ID")
+    private Integer studentId;
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 
     public Student(String fullName) {
         this.fullName = fullName;

@@ -8,6 +8,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -24,7 +25,7 @@ import static lombok.AccessLevel.PRIVATE;
         @NamedQuery(name = "Instructor.findByName", query = "select a from Instructor as a where lower(a.name) = lower(:name)")
 })
 @EqualsAndHashCode
-public class Instructor {
+public class Instructor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

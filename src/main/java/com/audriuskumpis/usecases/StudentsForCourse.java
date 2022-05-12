@@ -3,6 +3,7 @@ package com.audriuskumpis.usecases;
 import com.audriuskumpis.entities.Course;
 import com.audriuskumpis.entities.Instructor;
 import com.audriuskumpis.entities.Student;
+import com.audriuskumpis.interceptors.Logger;
 import com.audriuskumpis.persistence.CoursesDAO;
 import com.audriuskumpis.persistence.InstructorsDAO;
 import com.audriuskumpis.persistence.StudentsDAO;
@@ -51,6 +52,7 @@ public class StudentsForCourse implements Serializable {
     private List<SelectItem> allInstructors;
 
     @Transactional
+    @Logger
     public String createStudent() {
         studentToCreate.setCourse(this.course);
         studentsDAO.persist(studentToCreate);
@@ -58,6 +60,7 @@ public class StudentsForCourse implements Serializable {
     }
 
     @Transactional
+    @Logger
     public String createInstructorFromDropdown() {
         List<Course> allInstructorCourses = instructorToAdd.getCourses();
         allInstructorCourses.add(this.course);
@@ -67,6 +70,7 @@ public class StudentsForCourse implements Serializable {
     }
 
     @Transactional
+    @Logger
     public String createInstructor() {
         Instructor foundInstructor = instructorsDAO.findByName(instructorToAdd.getName());
         if (isNull(foundInstructor)) {
@@ -94,6 +98,7 @@ public class StudentsForCourse implements Serializable {
     }
 
     @PostConstruct
+    @Logger
     private void init() {
         Map<String, String > requestParams = getCurrentInstance()
                 .getExternalContext()
