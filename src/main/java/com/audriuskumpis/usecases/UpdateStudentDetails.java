@@ -35,7 +35,7 @@ public class UpdateStudentDetails implements Serializable {
                 .getExternalContext()
                 .getRequestParameterMap();
 
-        Integer studentId = parseInt(requestParams.get("studentId"));
+        int studentId = parseInt(requestParams.get("studentId"));
         this.student = studentsDAO.findOne(studentId);
     }
 

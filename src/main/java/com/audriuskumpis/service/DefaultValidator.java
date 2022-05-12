@@ -1,5 +1,7 @@
 package com.audriuskumpis.service;
 
+import com.audriuskumpis.interceptors.Logger;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Alternative;
 
@@ -10,6 +12,7 @@ import static java.lang.Character.isUpperCase;
 public class DefaultValidator implements NameValidator {
 
     @Override
+    @Logger
     public boolean isNameValid(String name) {
         return name.length() < 10 && isUpperCase(name.charAt(0));
     }

@@ -64,12 +64,8 @@ public class StudentsController {
             if (isNull(existingStudent)) {
                 return status(NOT_FOUND).build();
             }
-            if (!defaultValidator.isNameValid(studentDto.getFullName())) {
-                System.err.println(defaultValidator.getClass().getSimpleName() + " says name is not valid");
-            }
-            if (!validator.isNameValid(studentDto.getFullName())) {
-                System.err.println(validator.getClass().getSimpleName() + " says name is not valid");
-            }
+            boolean nameValid = defaultValidator.isNameValid(studentDto.getFullName());
+            boolean nameValid2 = validator.isNameValid(studentDto.getFullName());
 
             existingStudent.setFullName(studentDto.getFullName());
             existingStudent.setStudentId(idFixer.fixStudentId(studentDto.getStudentId()));
