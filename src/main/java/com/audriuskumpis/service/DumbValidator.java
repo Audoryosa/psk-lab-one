@@ -1,14 +1,13 @@
 package com.audriuskumpis.service;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.inject.Alternative;
+import javax.enterprise.inject.Specializes;
 
-@Alternative
+@Specializes
 @ApplicationScoped
-public class VipValidator implements NameValidator {
-
+public class DumbValidator extends DefaultValidator {
     @Override
     public boolean isNameValid(String name) {
-        return name.length() > 15;
+        return name.length() == 5;
     }
 }

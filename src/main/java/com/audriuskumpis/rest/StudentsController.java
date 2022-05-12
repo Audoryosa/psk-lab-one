@@ -1,8 +1,10 @@
 package com.audriuskumpis.rest;
 
+import com.audriuskumpis.decorator.StudentIdFixer;
 import com.audriuskumpis.entities.Student;
 import com.audriuskumpis.persistence.StudentsDAO;
 import com.audriuskumpis.rest.resource.StudentDto;
+import com.audriuskumpis.service.DefaultValidator;
 import com.audriuskumpis.service.NameValidator;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +36,12 @@ public class StudentsController {
     @Inject
     private NameValidator validator;
 
+    @Inject
+    private DefaultValidator defaultValidator;
+
+    @Inject
+    private StudentIdFixer idFixer;
+
     @GET
     @Path("/{id}")
     @Produces(APPLICATION_JSON)
@@ -56,11 +64,15 @@ public class StudentsController {
             if (isNull(existingStudent)) {
                 return status(NOT_FOUND).build();
             }
-            if (!validator.isNameValid(studentDto.getFullName())) {
-                throw new IllegalArgumentException("Name not valid");
+            if (!defaultValidator.isNameValid(studentDto.getFullName())) {
+                System.err.println(defaultValidator.getClass().getSimpleName() + " says name is not valid");
             }
+            if (!validator.isNameValid(studentDto.getFullName())) {
+                System.err.println(validator.getClass().getSimpleName() + " says name is not valid");
+            }
+
             existingStudent.setFullName(studentDto.getFullName());
-            existingStudent.setStudentId(studentDto.getStudentId());
+            existingStudent.setStudentId(idFixer.fixStudentId(studentDto.getStudentId()));
             studentsDAO.update(existingStudent);
             return ok().build();
         } catch (OptimisticLockException e) {

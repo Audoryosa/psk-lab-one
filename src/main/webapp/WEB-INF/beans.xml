@@ -10,6 +10,10 @@
         <class>com.audriuskumpis.interceptors.MethodLogger</class>
     </interceptors>
 
+    <decorators>
+        <class>com.audriuskumpis.decorator.StudentIdFixerDecorator</class>
+    </decorators>
+
     <alternatives>
         <class>com.audriuskumpis.service.VipValidator</class>
     </alternatives>
