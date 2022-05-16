@@ -21,7 +21,8 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 @Table(name = "COURSE")
 @NamedQueries({
-        @NamedQuery(name = "Course.findAll", query = "select a from Course as a")
+        @NamedQuery(name = "Course.findAll", query = "select a from Course as a"),
+        @NamedQuery(name = "Course.findByName", query = "select a from Course as a where a.title= :name")
 })
 public class Course implements Serializable {
 
